@@ -1,0 +1,18 @@
+name: CI - Duster Lint
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+
+jobs:
+  duster:
+    name: Duster Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Duster Lint"
+        uses: tighten/duster-action@v2
+        with:
+          args: lint --using="tlint,phpcodesniffer,phpcsfixer,pint"
